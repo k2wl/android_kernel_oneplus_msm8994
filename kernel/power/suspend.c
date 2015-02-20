@@ -265,6 +265,7 @@ static int suspend_enter(suspend_state_t state, bool *wakeup)
 /* Zhonglan.sun@ProDrv.CHG,add 2015/1/7  Add for wakeup analysis */
 		memset(wakeup_reason, 0, sizeof(wakeup_reason));
 #endif /* VENDOR_EDIT */
+		start_logging_wakeup_reasons();
 		syscore_resume();
 #ifdef VENDOR_EDIT
 /* Zhonglan.sun@ProDrv.CHG,add 2015/1/7  Add for wakeup analysis */
