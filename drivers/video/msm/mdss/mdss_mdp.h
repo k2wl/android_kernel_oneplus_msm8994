@@ -898,19 +898,6 @@ static inline bool __is_mdp_clk_svs_plus_range(struct mdss_data_type *mdata,
 		(rate <= mdata->svs_plus_max);
 }
 
-static inline uint8_t pp_vig_csc_pipe_val(struct mdss_mdp_pipe *pipe)
-{
-	switch (pipe->csc_coeff_set) {
-	case MDP_CSC_ITU_R_601:
-		return MDSS_MDP_CSC_YUV2RGB_601L;
-	case MDP_CSC_ITU_R_601_FR:
-		return MDSS_MDP_CSC_YUV2RGB_601FR;
-	case MDP_CSC_ITU_R_709:
-	default:
-		return  MDSS_MDP_CSC_YUV2RGB_709L;
-	}
-}
-
 irqreturn_t mdss_mdp_isr(int irq, void *ptr);
 int mdss_iommu_attach(struct mdss_data_type *mdata);
 int mdss_iommu_dettach(struct mdss_data_type *mdata);
