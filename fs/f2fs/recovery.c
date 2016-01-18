@@ -119,7 +119,7 @@ retry:
 		iput(einode);
 		goto retry;
 	}
-	err = __f2fs_add_link(dir, &name, inode);
+	err = __f2fs_add_link(dir, &name, inode, inode->i_ino, inode->i_mode);
 	if (err)
 		goto out_err;
 
@@ -568,8 +568,8 @@ out:
 			(loff_t)MAIN_BLKADDR(sbi) << PAGE_CACHE_SHIFT, -1);
 
 	if (err) {
-		truncate_inode_pages_final(NODE_MAPPING(sbi));
-		truncate_inode_pages_final(META_MAPPING(sbi));
+		truncate_inode_pages(NODE_MAPPING(sbi), 0);
+		truncate_inode_pages(META_MAPPING(sbi), 0);
 	}
 
 	clear_sbi_flag(sbi, SBI_POR_DOING);
